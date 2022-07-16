@@ -22,4 +22,10 @@ class PostCubit extends Cubit<DataState<List<PostModel>, String>> {
       emit(state.copyWith(isFailure: true, error: e.message));
     }
   }
+
+  void shuffle() {
+    List<PostModel> data = [...state.data!];
+    data.shuffle();
+    emit(state.copyWith(data: data, isSuccess: true));
+  }
 }

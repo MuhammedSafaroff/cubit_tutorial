@@ -1,4 +1,5 @@
-import 'package:ders/presentation/blocs/cubit/post_cubit.dart';
+import 'package:ders/presentation/blocs/album/cubit/album_cubit.dart';
+import 'package:ders/presentation/blocs/post/post_cubit.dart';
 import 'package:ders/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +21,15 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => PostCubit()..postFetch(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => PostCubit()..postFetch(),
+          ),
+          BlocProvider(
+            create: (context) => AlbumCubit(),
+          ),
+        ],
         child: const MyHomePage(),
       ),
     );
